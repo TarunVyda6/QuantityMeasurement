@@ -37,3 +37,15 @@ class Lengths(enum.Enum):
 
     def convert(self, value):
         return self.unit * value
+
+
+class Weights(enum.Enum):
+    kilo_gram = 1.0
+    gram = 0.001
+    tonne = 1000
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    def convert(self, value):
+        return self.unit * value

@@ -18,3 +18,21 @@ def test_for_adding_two_lengths(first_type, first_value, second_type, second_val
     type_one = QuantityMeasurer(first_type, first_value)
     type_two = QuantityMeasurer(second_type, second_value)
     assert type_one.add(type_two) == result
+
+
+@pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
+                         [(Weights.kilo_gram, 16, Weights.gram, 16000, True), (Weights.tonne, 0.026, Weights.gram,
+                                                                               26000, True)])
+def test_for_weight_conversion(first_type, first_value, second_type, second_value, result):
+    type_one = QuantityMeasurer(first_type, first_value)
+    type_two = QuantityMeasurer(second_type, second_value)
+    assert type_one.compare(type_two) == result
+
+
+@pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
+                         [(Weights.kilo_gram, 16, Weights.gram, 16000, 32), (Weights.tonne, 15, Weights.kilo_gram,
+                                                                             15000, 30000)])
+def test_for_adding_two_weights(first_type, first_value, second_type, second_value, result):
+    type_one = QuantityMeasurer(first_type, first_value)
+    type_two = QuantityMeasurer(second_type, second_value)
+    assert type_one.add(type_two) == result
