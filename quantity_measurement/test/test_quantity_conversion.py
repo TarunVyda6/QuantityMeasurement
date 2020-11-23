@@ -36,3 +36,19 @@ def test_for_adding_two_weights(first_type, first_value, second_type, second_val
     type_one = QuantityMeasurer(first_type, first_value)
     type_two = QuantityMeasurer(second_type, second_value)
     assert type_one.add(type_two) == result
+
+
+@pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
+                         [(Temperature.fahrenheit, 89.6, Temperature.celsius, 32, True)])
+def test_for_temperature_conversion(first_type, first_value, second_type, second_value, result):
+    type_one = QuantityMeasurer(first_type, first_value)
+    type_two = QuantityMeasurer(second_type, second_value)
+    assert type_one.compare(type_two) == result
+
+
+@pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
+                         [(Temperature.fahrenheit, 89.6, Temperature.celsius, 32, 179.2)])
+def test_for_temperature_addition(first_type, first_value, second_type, second_value, result):
+    type_one = QuantityMeasurer(first_type, first_value)
+    type_two = QuantityMeasurer(second_type, second_value)
+    assert type_one.add(type_two) == result
