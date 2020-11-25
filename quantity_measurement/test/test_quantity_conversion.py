@@ -17,7 +17,7 @@ def test_for_length_conversion(first_type, first_value, second_type, second_valu
 def test_for_adding_two_lengths(first_type, first_value, second_type, second_value, result):
     type_one = QuantityMeasurer(first_type, first_value)
     type_two = QuantityMeasurer(second_type, second_value)
-    assert type_one.add(type_two) == result
+    assert type_one + type_two == result
 
 
 @pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
@@ -35,7 +35,7 @@ def test_for_weight_conversion(first_type, first_value, second_type, second_valu
 def test_for_adding_two_weights(first_type, first_value, second_type, second_value, result):
     type_one = QuantityMeasurer(first_type, first_value)
     type_two = QuantityMeasurer(second_type, second_value)
-    assert type_one.add(type_two) == result
+    assert type_one + type_two == result
 
 
 @pytest.mark.parametrize('first_type, first_value, second_type,second_value,result',
@@ -51,4 +51,4 @@ def test_for_temperature_conversion(first_type, first_value, second_type, second
 def test_for_temperature_addition(first_type, first_value, second_type, second_value, result):
     type_one = QuantityMeasurer(first_type, first_value)
     type_two = QuantityMeasurer(second_type, second_value)
-    assert type_one.add(type_two) == result
+    assert type_one + type_two == result
