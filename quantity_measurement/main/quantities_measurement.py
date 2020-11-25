@@ -1,4 +1,8 @@
 import enum
+import logging
+from quantity_measurement.main.measurement_exceptions import *
+
+logging.basicConfig(filename="quantity.log", level=logging.DEBUG, format='%(asctime)s : %(levelname)s : %(message)s')
 
 
 class QuantityMeasurer:
@@ -15,14 +19,21 @@ class QuantityMeasurer:
         if self.__unit.__class__ == other.__unit.__class__:
             if self.__unit.__class__.convert(self.__unit, self.__value) == other.__unit.__class__.convert(other.__unit,
                                                                                                           other.__value):
+                logging.debug("Both the conversion values of {} and {} are equal".format(self.__unit, other.__unit))
                 return True
-        return False
+            logging.debug("Both Quantity values are not equal")
+            return False
+        logging.debug("Both quantity types are not matching")
+        raise TypeMismatchException("Both quantity types are not matching")
 
-    def add(self, other):
+    def __add__(self, other):
         if self.__unit.__class__ == other.__unit.__class__:
-            return self.__unit.__class__.convert(self.__unit, self.__value) + other.__unit.__class__.convert(
+            result = self.__unit.__class__.convert(self.__unit, self.__value) + other.__unit.__class__.convert(
                 other.__unit, other.__value)
-        return 0
+            logging.debug("addition of {} + {} is : {}".format(self.__value, other.__value, result))
+            return result
+        logging.debug("Both quantity types are not matching")
+        raise TypeMismatchException("Both quantity types are not matching")
 
 
 class Lengths(enum.Enum):
