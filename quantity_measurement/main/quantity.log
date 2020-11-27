@@ -1,0 +1,3 @@
+2020-11-26 21:13:20,526 : DEBUG : addition of 1 Lengths.feet + 12 Lengths.inch is : 24.0
+2020-11-26 21:13:20,526 : DEBUG : Both Quantity values are not equal
+2020-11-26 21:13:20,526 : DEBUG : Both quantity types are not matching
